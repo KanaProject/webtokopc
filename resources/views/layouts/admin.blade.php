@@ -1,9 +1,14 @@
 <!DOCTYPE html>
+@php
+    $storeSettings = \App\Models\SiteSetting::allAsArray();
+    $storeName = $storeSettings['store_name'] ?? 'TechnoStore';
+    $storeLogo = $storeSettings['store_logo'] ?? null;
+@endphp
 <html lang="id" x-data="{ darkMode: false }" x-init="darkMode = document.documentElement.classList.contains('dark'); $watch('darkMode', val => { if(val) { document.documentElement.classList.add('dark'); localStorage.theme = 'dark'; } else { document.documentElement.classList.remove('dark'); localStorage.theme = 'light'; } })">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ isset($title) ? $title . ' — Admin TechnoStore' : 'Admin Panel — TechnoStore' }}</title>
+    <title>{{ isset($title) ? $title . ' — Admin ' . $storeName : 'Admin Panel — ' . $storeName }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -57,8 +62,12 @@
     <aside :class="sideOpen ? 'w-64' : 'w-16'" class="flex-shrink-0 h-screen sticky top-0 flex flex-col transition-all duration-300 border-r border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-[#0D1526]">
         <div class="p-4 border-b border-slate-200 dark:border-white/5">
             <a href="{{ route('home') }}" class="flex items-center gap-2 overflow-hidden">
-                <div class="w-9 h-9 rounded-xl btn-glow flex items-center justify-center text-white font-bold flex-shrink-0">T</div>
-                <span x-show="sideOpen" class="font-jakarta font-extrabold text-slate-900 dark:text-white whitespace-nowrap">Techno<span class="gradient-text">Store</span></span>
+                @if($storeLogo)
+                    <img src="{{ Storage::url($storeLogo) }}" alt="{{ $storeName }}" class="h-9 w-auto object-contain flex-shrink-0">
+                @else
+                    <div class="w-9 h-9 rounded-xl btn-glow flex items-center justify-center text-white font-bold flex-shrink-0">{{ strtoupper(substr($storeName, 0, 1)) }}</div>
+                @endif
+                <span x-show="sideOpen" class="font-jakarta font-extrabold text-slate-900 dark:text-white whitespace-nowrap">{{ $storeName }}</span>
             </a>
         </div>
 
@@ -80,6 +89,10 @@
             <a href="{{ route('admin.orders.index') }}" class="sidebar-link {{ request()->routeIs('admin.orders*') ? 'active' : '' }}">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
                 <span x-show="sideOpen">Pesanan</span>
+            </a>
+            <a href="{{ route('admin.settings.index') }}" class="sidebar-link {{ request()->routeIs('admin.settings*') ? 'active' : '' }}">
+                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                <span x-show="sideOpen">Halaman Utama</span>
             </a>
             <hr class="border-white/5 my-2">
             <a href="{{ route('home') }}" class="sidebar-link">

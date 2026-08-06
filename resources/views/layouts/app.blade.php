@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth" x-data="{ darkMode: false }" x-init="darkMode = document.documentElement.classList.contains('dark'); $watch('darkMode', val => { if(val) { document.documentElement.classList.add('dark'); localStorage.theme = 'dark'; } else { document.documentElement.classList.remove('dark'); localStorage.theme = 'light'; } })">
+@php
+    $storeSettings = \App\Models\SiteSetting::allAsArray();
+    $storeName = $storeSettings['store_name'] ?? 'TechnoStore';
+    $storeLogo = $storeSettings['store_logo'] ?? null;
+    $storeTagline = $storeSettings['store_tagline'] ?? 'Toko Komputer Terpercaya';
+@endphp
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{ $metaDescription ?? 'TechnoStore - Toko komputer terpercaya. Laptop, PC Desktop, Monitor, Aksesoris & Komponen PC terbaik dengan harga terjangkau.' }}">
-    <title>{{ isset($title) ? $title . ' — TechnoStore' : 'TechnoStore — Toko Komputer Terpercaya' }}</title>
+    <meta name="description" content="{{ $metaDescription ?? $storeName . ' - ' . $storeTagline }}">
+    <title>{{ isset($title) ? $title . ' — ' . $storeName : $storeName . ' — ' . $storeTagline }}</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
@@ -65,6 +71,85 @@
         .toast { animation: slideIn 0.4s ease; }
         @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         .hero-glow { background: radial-gradient(ellipse at center, rgba(59,130,246,0.15) 0%, transparent 70%); }
+
+        /* ===== LIGHT MODE OVERRIDES ===== */
+        html:not(.dark) body {
+            color: #0F172A;
+        }
+        /* Nav links */
+        html:not(.dark) .nav-link {
+            color: #1E293B !important;
+        }
+        html:not(.dark) .nav-link:hover {
+            color: #3B82F6 !important;
+        }
+        /* Semua teks slate-* di navbar & footer menjadi gelap */
+        html:not(.dark) nav a,
+        html:not(.dark) nav button:not(.btn-glow),
+        html:not(.dark) nav span:not(.gradient-text) {
+            color: #1E293B;
+        }
+        /* Dropdown kategori di navbar */
+        html:not(.dark) nav .glass a {
+            color: #334155 !important;
+        }
+        html:not(.dark) nav .glass a:hover {
+            color: #1E293B !important;
+            background: rgba(59,130,246,0.08) !important;
+        }
+        /* Footer teks */
+        html:not(.dark) footer {
+            background: #F1F5F9 !important;
+            border-top-color: rgba(0,0,0,0.08) !important;
+        }
+        html:not(.dark) footer h4,
+        html:not(.dark) footer a,
+        html:not(.dark) footer p,
+        html:not(.dark) footer li {
+            color: #334155 !important;
+        }
+        html:not(.dark) footer a:hover {
+            color: #3B82F6 !important;
+        }
+        html:not(.dark) footer hr {
+            border-color: rgba(0,0,0,0.08) !important;
+        }
+        /* Search input */
+        html:not(.dark) nav input[type="text"] {
+            background: rgba(0,0,0,0.04) !important;
+            border-color: rgba(0,0,0,0.12) !important;
+            color: #1E293B !important;
+        }
+        html:not(.dark) nav input[type="text"]::placeholder {
+            color: #94A3B8 !important;
+        }
+        /* Icon warna di navbar */
+        html:not(.dark) nav svg {
+            color: #475569;
+        }
+        html:not(.dark) nav svg:hover {
+            color: #3B82F6;
+        }
+        /* User dropdown */
+        html:not(.dark) .glass-blue {
+            background: rgba(59,130,246,0.1) !important;
+        }
+        html:not(.dark) nav .glass-blue span,
+        html:not(.dark) nav .glass-blue button {
+            color: #1E293B !important;
+        }
+        html:not(.dark) nav .glass {
+            background: rgba(255,255,255,0.85) !important;
+            border-color: rgba(0,0,0,0.08) !important;
+        }
+        /* Mobile menu */
+        html:not(.dark) nav [x-show="mobileOpen"] {
+            background: #F8FAFC !important;
+            border-top-color: rgba(0,0,0,0.08) !important;
+        }
+        html:not(.dark) nav [x-show="mobileOpen"] a {
+            color: #334155 !important;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -74,8 +159,12 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <a href="{{ route('home') }}" class="flex items-center gap-2">
-                    <div class="w-9 h-9 rounded-xl btn-glow flex items-center justify-center text-lg font-bold text-white">T</div>
-                    <span class="font-jakarta font-extrabold text-xl text-slate-900 dark:text-white">Techno<span class="gradient-text">Store</span></span>
+                    @if($storeLogo)
+                        <img src="{{ Storage::url($storeLogo) }}" alt="{{ $storeName }}" class="h-9 w-auto object-contain">
+                    @else
+                        <div class="w-9 h-9 rounded-xl btn-glow flex items-center justify-center text-lg font-bold text-white">{{ strtoupper(substr($storeName, 0, 1)) }}</div>
+                    @endif
+                    <span class="font-jakarta font-extrabold text-xl text-slate-900 dark:text-white">{{ $storeName }}</span>
                 </a>
 
                 <div class="hidden md:flex items-center gap-6">
@@ -188,10 +277,14 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
                     <a href="{{ route('home') }}" class="flex items-center gap-2 mb-4">
-                        <div class="w-9 h-9 rounded-xl btn-glow flex items-center justify-center text-lg font-bold text-white">T</div>
-                        <span class="font-jakarta font-extrabold text-xl text-white">Techno<span class="gradient-text">Store</span></span>
+                        @if($storeLogo)
+                            <img src="{{ Storage::url($storeLogo) }}" alt="{{ $storeName }}" class="h-9 w-auto object-contain">
+                        @else
+                            <div class="w-9 h-9 rounded-xl btn-glow flex items-center justify-center text-lg font-bold text-white">{{ strtoupper(substr($storeName, 0, 1)) }}</div>
+                        @endif
+                        <span class="font-jakarta font-extrabold text-xl text-white">{{ $storeName }}</span>
                     </a>
-                    <p class="text-slate-400 text-sm leading-relaxed">Toko komputer terpercaya dengan produk original bergaransi resmi.</p>
+                    <p class="text-slate-400 text-sm leading-relaxed">{{ $storeSettings['store_description'] ?? 'Toko komputer terpercaya dengan produk original bergaransi resmi.' }}</p>
                 </div>
                 <div>
                     <h4 class="text-white font-semibold mb-4">Kategori</h4>
@@ -214,15 +307,15 @@
                 <div>
                     <h4 class="text-white font-semibold mb-4">Kontak</h4>
                     <ul class="space-y-2.5 text-slate-400 text-sm">
-                        <li>📍 Jl. Sudirman No.1, Jakarta Pusat</li>
-                        <li>📞 0812-0000-0001</li>
-                        <li>✉️ info@technostore.com</li>
+                        @if($storeSettings['store_address'] ?? null)<li>📍 {{ $storeSettings['store_address'] }}</li>@endif
+                        @if($storeSettings['store_phone'] ?? null)<li>📞 {{ $storeSettings['store_phone'] }}</li>@endif
+                        @if($storeSettings['store_email'] ?? null)<li>✉️ {{ $storeSettings['store_email'] }}</li>@endif
                     </ul>
                 </div>
             </div>
             <hr class="border-white/5 mt-10 mb-6">
             <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-sm">
-                <p>© {{ date('Y') }} TechnoStore. Semua hak cipta dilindungi.</p>
+                <p>© {{ date('Y') }} {{ $storeName }}. Semua hak cipta dilindungi.</p>
                 <p>Dibuat dengan ❤️ menggunakan Laravel</p>
             </div>
         </div>

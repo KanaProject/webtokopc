@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\SiteSetting;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -28,6 +29,8 @@ class HomeController extends Controller
             ->take(4)
             ->get();
 
-        return view('home', compact('featuredProducts', 'categories', 'latestProducts'));
+        $settings = SiteSetting::allAsArray();
+
+        return view('home', compact('featuredProducts', 'categories', 'latestProducts', 'settings'));
     }
 }

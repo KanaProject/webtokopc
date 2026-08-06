@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Admin\ProductController as AdminProduct;
 use App\Http\Controllers\Admin\CategoryController as AdminCategory;
 use App\Http\Controllers\Admin\OrderController as AdminOrder;
+use App\Http\Controllers\Admin\SiteSettingController as AdminSiteSetting;
 use Illuminate\Support\Facades\Route;
 
 // ============================================================
@@ -80,4 +81,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('orders', [AdminOrder::class, 'index'])->name('orders.index');
     Route::get('orders/{order}', [AdminOrder::class, 'show'])->name('orders.show');
     Route::patch('orders/{order}/status', [AdminOrder::class, 'updateStatus'])->name('orders.update-status');
+
+    // Site Settings (Homepage Content)
+    Route::get('settings', [AdminSiteSetting::class, 'index'])->name('settings.index');
+    Route::post('settings', [AdminSiteSetting::class, 'update'])->name('settings.update');
+    Route::delete('settings/logo', [AdminSiteSetting::class, 'deleteLogo'])->name('settings.logo.delete');
 });
