@@ -67,7 +67,7 @@
             <a href="{{ route('categories.show', $category) }}"
                class="glass card-hover rounded-2xl p-5 text-center group border border-slate-200 dark:border-white/5"
                style="animation-delay: {{ $index * 0.05 }}s">
-                <div class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">{{ $category->icon }}</div>
+                <div class="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300 drop-shadow-md">{{ $category->icon }}</div>
                 <h3 class="text-slate-900 dark:text-white text-sm font-semibold mb-1">{{ $category->name }}</h3>
                 <p class="text-slate-500 text-xs">{{ $category->products_count }} produk</p>
             </a>
@@ -162,7 +162,7 @@
             @foreach($features as $index => $feature)
             @if($feature['title'])
             <div class="glass card-hover rounded-2xl p-6 border border-slate-200 dark:border-white/5" style="animation-delay: {{ $index * 0.1 }}s">
-                <div class="text-4xl mb-4">{{ $feature['icon'] }}</div>
+                <div class="text-4xl mb-4 drop-shadow-md">{{ $feature['icon'] }}</div>
                 <h3 class="text-slate-900 dark:text-white font-semibold text-lg mb-2">{{ $feature['title'] }}</h3>
                 <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{{ $feature['desc'] }}</p>
             </div>
