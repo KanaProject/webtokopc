@@ -61,13 +61,33 @@
     {{-- SIDEBAR --}}
     <aside :class="sideOpen ? 'w-64' : 'w-16'" class="flex-shrink-0 h-screen sticky top-0 flex flex-col transition-all duration-300 border-r border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-[#0D1526]">
         <div class="p-4 border-b border-slate-200 dark:border-white/5">
-            <a href="{{ route('home') }}" class="flex items-center gap-2 overflow-hidden">
+            <a href="{{ route('home') }}" class="flex items-center group h-16 px-6">
                 @if($storeLogo)
-                    <img src="{{ Storage::url($storeLogo) }}" alt="{{ $storeName }}" class="h-9 w-auto object-contain flex-shrink-0">
+                    <img src="{{ Storage::url($storeLogo) }}" alt="{{ $storeName }}" class="h-9 w-auto object-contain flex-shrink-0 transition-transform group-hover:scale-105">
                 @else
-                    <div class="w-9 h-9 rounded-xl btn-glow flex items-center justify-center text-white font-bold flex-shrink-0">{{ strtoupper(substr($storeName, 0, 1)) }}</div>
+                    <div class="w-9 h-9 rounded-xl btn-glow flex items-center justify-center text-lg font-bold text-white flex-shrink-0 transition-transform group-hover:scale-105">{{ strtoupper(substr($storeName, 0, 1)) }}</div>
                 @endif
-                <span x-show="sideOpen" class="font-jakarta font-extrabold text-slate-900 dark:text-white whitespace-nowrap">{{ $storeName }}</span>
+                
+                @php
+                    $name = $storeName;
+                    $firstPart = $name;
+                    $secondPart = '';
+                    if (str_ends_with(strtolower($name), 'pc')) {
+                        $firstPart = substr($name, 0, -2);
+                        $secondPart = substr($name, -2);
+                    } else {
+                        $parts = explode(' ', $name);
+                        if (count($parts) > 1) {
+                            $secondPart = ' ' . array_pop($parts);
+                            $firstPart = implode(' ', $parts);
+                        }
+                    }
+                @endphp
+                <div class="hidden md:flex items-center ml-3 pl-3 border-l-2 border-slate-300/50 dark:border-white/10" x-show="sideOpen">
+                    <span class="font-jakarta font-extrabold text-lg tracking-tight truncate">
+                        <span class="text-slate-900 dark:text-white">{{ $firstPart }}</span><span class="text-blue-600 dark:text-blue-400">{{ $secondPart }}</span>
+                    </span>
+                </div>
             </a>
         </div>
 

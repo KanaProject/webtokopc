@@ -161,13 +161,34 @@
     <nav class="sticky top-0 z-50 glass border-b border-blue-500/10" x-data="{ mobileOpen: false }">
         <div class="w-full xl:w-[90%] 2xl:w-[85%] max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-0">
             <div class="flex items-center justify-between h-16">
-                <a href="{{ route('home') }}" class="flex items-center gap-2">
+                <a href="{{ route('home') }}" class="flex items-center group">
                     @if($storeLogo)
-                        <img src="{{ Storage::url($storeLogo) }}" alt="{{ $storeName }}" class="h-9 w-auto object-contain">
+                        <img src="{{ Storage::url($storeLogo) }}" alt="{{ $storeName }}" class="h-9 w-auto object-contain transition-transform group-hover:scale-105">
                     @else
-                        <div class="w-9 h-9 rounded-xl btn-glow flex items-center justify-center text-lg font-bold text-white">{{ strtoupper(substr($storeName, 0, 1)) }}</div>
+                        <div class="w-9 h-9 rounded-xl btn-glow flex items-center justify-center text-lg font-bold text-white transition-transform group-hover:scale-105">{{ strtoupper(substr($storeName, 0, 1)) }}</div>
                     @endif
-                    <span class="font-jakarta font-extrabold text-xl text-slate-900 dark:text-white">{{ $storeName }}</span>
+
+                    {{-- Desktop text with divider and color split --}}
+                    @php
+                        $name = $storeName;
+                        $firstPart = $name;
+                        $secondPart = '';
+                        if (str_ends_with(strtolower($name), 'pc')) {
+                            $firstPart = substr($name, 0, -2);
+                            $secondPart = substr($name, -2);
+                        } else {
+                            $parts = explode(' ', $name);
+                            if (count($parts) > 1) {
+                                $secondPart = ' ' . array_pop($parts);
+                                $firstPart = implode(' ', $parts);
+                            }
+                        }
+                    @endphp
+                    <div class="hidden md:flex items-center ml-3 pl-3 border-l-2 border-slate-300/50 dark:border-white/10">
+                        <span class="font-jakarta font-extrabold text-xl tracking-tight">
+                            <span class="text-slate-900 dark:text-white">{{ $firstPart }}</span><span class="text-blue-600 dark:text-blue-400">{{ $secondPart }}</span>
+                        </span>
+                    </div>
                 </a>
 
                 <div class="hidden md:flex items-center gap-6">
