@@ -97,23 +97,6 @@
             color: #1E293B !important;
             background: rgba(59,130,246,0.08) !important;
         }
-        /* Footer teks */
-        html:not(.dark) footer {
-            background: #F1F5F9 !important;
-            border-top-color: rgba(0,0,0,0.08) !important;
-        }
-        html:not(.dark) footer h4,
-        html:not(.dark) footer a,
-        html:not(.dark) footer p,
-        html:not(.dark) footer li {
-            color: #334155 !important;
-        }
-        html:not(.dark) footer a:hover {
-            color: #3B82F6 !important;
-        }
-        html:not(.dark) footer hr {
-            border-color: rgba(0,0,0,0.08) !important;
-        }
         /* Search input */
         html:not(.dark) nav input[type="text"] {
             background: rgba(0,0,0,0.04) !important;
@@ -299,7 +282,7 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="mt-20 border-t border-white/5 bg-slate-900/50">
+    <footer class="mt-20 border-t border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-slate-900/50">
         <div class="w-full xl:w-[90%] 2xl:w-[85%] max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-0 py-12">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
@@ -331,36 +314,36 @@
                             </span>
                         </div>
                     </a>
-                    <p class="text-slate-400 text-sm leading-relaxed">{{ $storeSettings['store_description'] ?? 'Toko komputer terpercaya dengan produk original bergaransi resmi.' }}</p>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{{ $storeSettings['store_description'] ?? 'Toko komputer terpercaya dengan produk original bergaransi resmi.' }}</p>
                 </div>
                 <div>
-                    <h4 class="text-white font-semibold mb-4">Kategori</h4>
+                    <h4 class="text-slate-900 dark:text-white font-semibold mb-4">Kategori</h4>
                     <ul class="space-y-2">
                         @foreach(\App\Models\Category::where('is_active', true)->orderBy('sort_order')->take(5)->get() as $cat)
-                        <li><a href="{{ route('categories.show', $cat) }}" class="text-slate-400 text-sm hover:text-blue-400 transition-colors">{{ $cat->name }}</a></li>
+                        <li><a href="{{ route('categories.show', $cat) }}" class="text-slate-600 dark:text-slate-400 text-sm hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{{ $cat->name }}</a></li>
                         @endforeach
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-white font-semibold mb-4">Akun</h4>
+                    <h4 class="text-slate-900 dark:text-white font-semibold mb-4">Akun</h4>
                     <ul class="space-y-2">
-                        <li><a href="{{ route('login') }}" class="text-slate-400 text-sm hover:text-blue-400 transition-colors">Masuk</a></li>
-                        <li><a href="{{ route('register') }}" class="text-slate-400 text-sm hover:text-blue-400 transition-colors">Daftar</a></li>
+                        <li><a href="{{ route('login') }}" class="text-slate-600 dark:text-slate-400 text-sm hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Masuk</a></li>
+                        <li><a href="{{ route('register') }}" class="text-slate-600 dark:text-slate-400 text-sm hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Daftar</a></li>
                         @auth
-                        <li><a href="{{ route('orders.index') }}" class="text-slate-400 text-sm hover:text-blue-400 transition-colors">Pesanan Saya</a></li>
+                        <li><a href="{{ route('orders.index') }}" class="text-slate-600 dark:text-slate-400 text-sm hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Pesanan Saya</a></li>
                         @endauth
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-white font-semibold mb-4">Kontak</h4>
-                    <ul class="space-y-2.5 text-slate-400 text-sm">
+                    <h4 class="text-slate-900 dark:text-white font-semibold mb-4">Kontak</h4>
+                    <ul class="space-y-2.5 text-slate-600 dark:text-slate-400 text-sm">
                         @if($storeSettings['store_address'] ?? null)<li>📍 {{ $storeSettings['store_address'] }}</li>@endif
                         @if($storeSettings['store_phone'] ?? null)<li>📞 {{ $storeSettings['store_phone'] }}</li>@endif
                         @if($storeSettings['store_email'] ?? null)<li>✉️ {{ $storeSettings['store_email'] }}</li>@endif
                     </ul>
                 </div>
             </div>
-            <hr class="border-white/5 mt-10 mb-6">
+            <hr class="border-slate-200 dark:border-white/5 mt-10 mb-6">
             <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-sm">
                 <p>© {{ date('Y') }} {{ $storeName }}. Semua hak cipta dilindungi.</p>
                 <p>Dibuat dengan ❤️ menggunakan Laravel</p>
