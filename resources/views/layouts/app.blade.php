@@ -139,8 +139,10 @@
             color: #1E293B !important;
         }
         html:not(.dark) nav .glass {
-            background: rgba(255,255,255,0.85) !important;
-            border-color: rgba(0,0,0,0.08) !important;
+            background: rgba(241, 245, 249, 0.6) !important; /* slate-100 semi-transparent */
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+            border: 1px solid rgba(0,0,0,0.12) !important;
         }
         /* Mobile menu */
         html:not(.dark) nav [x-show="mobileOpen"] {
