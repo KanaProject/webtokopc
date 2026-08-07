@@ -92,19 +92,19 @@
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Nama Toko</label>
                                 <input type="text" name="store_name" value="{{ $settings['store_name'] ?? 'TechnoStore' }}"
-                                       class="w-full px-4 py-2.5 rounded-xl text-sm" placeholder="TechnoStore">
+                                       class="w-full px-4 py-2.5 rounded-xl text-sm bg-white dark:bg-[#0A101F] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500" placeholder="TechnoStore">
                                 <p class="text-xs text-slate-400 mt-1">Muncul di navbar, footer, dan tab browser.</p>
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Tagline</label>
                                 <input type="text" name="store_tagline" value="{{ $settings['store_tagline'] ?? '' }}"
-                                       class="w-full px-4 py-2.5 rounded-xl text-sm" placeholder="Toko Komputer Terpercaya">
+                                       class="w-full px-4 py-2.5 rounded-xl text-sm bg-white dark:bg-[#0A101F] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500" placeholder="Toko Komputer Terpercaya">
                             </div>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Deskripsi Singkat (di footer)</label>
                             <textarea name="store_description" rows="2"
-                                      class="w-full px-4 py-2.5 rounded-xl text-sm resize-none"
+                                      class="w-full px-4 py-2.5 rounded-xl text-sm resize-none bg-white dark:bg-[#0A101F] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500"
                                       placeholder="Toko komputer terpercaya...">{{ $settings['store_description'] ?? '' }}</textarea>
                         </div>
                     </div>
@@ -120,18 +120,18 @@
                         <div>
                             <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">📍 Alamat</label>
                             <input type="text" name="store_address" value="{{ $settings['store_address'] ?? '' }}"
-                                   class="w-full px-4 py-2.5 rounded-xl text-sm" placeholder="Jl. Sudirman No.1, Jakarta Pusat">
+                                   class="w-full px-4 py-2.5 rounded-xl text-sm bg-white dark:bg-[#0A101F] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500" placeholder="Jl. Sudirman No.1, Jakarta Pusat">
                         </div>
                         <div class="grid sm:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">📞 Nomor Telepon</label>
                                 <input type="text" name="store_phone" value="{{ $settings['store_phone'] ?? '' }}"
-                                       class="w-full px-4 py-2.5 rounded-xl text-sm" placeholder="0812-0000-0001">
+                                       class="w-full px-4 py-2.5 rounded-xl text-sm bg-white dark:bg-[#0A101F] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500" placeholder="0812-0000-0001">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">✉️ Email</label>
                                 <input type="email" name="store_email" value="{{ $settings['store_email'] ?? '' }}"
-                                       class="w-full px-4 py-2.5 rounded-xl text-sm" placeholder="info@toko.com">
+                                       class="w-full px-4 py-2.5 rounded-xl text-sm bg-white dark:bg-[#0A101F] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500" placeholder="info@toko.com">
                             </div>
                         </div>
                     </div>
@@ -153,7 +153,7 @@
                         <div>
                             <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Teks Badge Atas</label>
                             <input type="text" name="hero_badge" value="{{ $settings['hero_badge'] ?? '' }}"
-                                   class="w-full px-4 py-2.5 rounded-xl text-sm" placeholder="Stok Tersedia — Pengiriman Seluruh Indonesia">
+                                   class="w-full px-4 py-2.5 rounded-xl text-sm bg-white dark:bg-[#0A101F] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500" placeholder="Stok Tersedia — Pengiriman Seluruh Indonesia">
                             <p class="text-xs text-slate-400 mt-1">Teks kecil dengan titik hijau di atas judul utama.</p>
                         </div>
 
@@ -161,19 +161,19 @@
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Judul Utama (baris 1)</label>
                                 <input type="text" name="hero_title" value="{{ $settings['hero_title'] ?? '' }}"
-                                       class="w-full px-4 py-2.5 rounded-xl text-sm" placeholder="Toko Komputer">
+                                       class="w-full px-4 py-2.5 rounded-xl text-sm bg-white dark:bg-[#0A101F] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500" placeholder="Toko Komputer">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Judul Highlight (baris 2, warna gradien)</label>
                                 <input type="text" name="hero_title_highlight" value="{{ $settings['hero_title_highlight'] ?? '' }}"
-                                       class="w-full px-4 py-2.5 rounded-xl text-sm" placeholder="Terpercaya #1">
+                                       class="w-full px-4 py-2.5 rounded-xl text-sm bg-white dark:bg-[#0A101F] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500" placeholder="Terpercaya #1">
                             </div>
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Subtitle / Deskripsi</label>
                             <textarea name="hero_subtitle" rows="3"
-                                      class="w-full px-4 py-2.5 rounded-xl text-sm resize-none"
+                                      class="w-full px-4 py-2.5 rounded-xl text-sm resize-none bg-white dark:bg-[#0A101F] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500"
                                       placeholder="Temukan laptop, PC gaming...">{{ $settings['hero_subtitle'] ?? '' }}</textarea>
                         </div>
 
@@ -181,12 +181,12 @@
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Tombol Utama (CTA)</label>
                                 <input type="text" name="hero_cta_primary" value="{{ $settings['hero_cta_primary'] ?? '' }}"
-                                       class="w-full px-4 py-2.5 rounded-xl text-sm" placeholder="🛍️ Belanja Sekarang">
+                                       class="w-full px-4 py-2.5 rounded-xl text-sm bg-white dark:bg-[#0A101F] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500" placeholder="🛍️ Belanja Sekarang">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Tombol Sekunder</label>
                                 <input type="text" name="hero_cta_secondary" value="{{ $settings['hero_cta_secondary'] ?? '' }}"
-                                       class="w-full px-4 py-2.5 rounded-xl text-sm" placeholder="Lihat Kategori">
+                                       class="w-full px-4 py-2.5 rounded-xl text-sm bg-white dark:bg-[#0A101F] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500" placeholder="Lihat Kategori">
                             </div>
                         </div>
 
@@ -210,12 +210,12 @@
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Nilai (misal: 500+)</label>
                                 <input type="text" name="stat_{{ $i }}_value" value="{{ $settings['stat_'.$i.'_value'] ?? '' }}"
-                                       class="w-full px-4 py-2.5 rounded-xl text-sm" placeholder="500+">
+                                       class="w-full px-4 py-2.5 rounded-xl text-sm bg-white dark:bg-[#0A101F] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500" placeholder="500+">
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Label (misal: Produk)</label>
                                 <input type="text" name="stat_{{ $i }}_label" value="{{ $settings['stat_'.$i.'_label'] ?? '' }}"
-                                       class="w-full px-4 py-2.5 rounded-xl text-sm" placeholder="Produk">
+                                       class="w-full px-4 py-2.5 rounded-xl text-sm bg-white dark:bg-[#0A101F] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500" placeholder="Produk">
                             </div>
                         </div>
                     </div>
@@ -236,38 +236,38 @@
                     <div>
                         <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Teks Badge Kecil</label>
                         <input type="text" name="promo_badge" value="{{ $settings['promo_badge'] ?? '' }}"
-                               class="w-full px-4 py-2.5 rounded-xl text-sm" placeholder="⚡ Penawaran Spesial">
+                               class="w-full px-4 py-2.5 rounded-xl text-sm bg-white dark:bg-[#0A101F] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500" placeholder="⚡ Penawaran Spesial">
                     </div>
 
                     <div class="grid sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Judul (teks biasa)</label>
                             <input type="text" name="promo_title" value="{{ $settings['promo_title'] ?? '' }}"
-                                   class="w-full px-4 py-2.5 rounded-xl text-sm" placeholder="Diskon hingga">
+                                   class="w-full px-4 py-2.5 rounded-xl text-sm bg-white dark:bg-[#0A101F] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500" placeholder="Diskon hingga">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Highlight (kuning, misal: 30%)</label>
                             <input type="text" name="promo_highlight" value="{{ $settings['promo_highlight'] ?? '' }}"
-                                   class="w-full px-4 py-2.5 rounded-xl text-sm" placeholder="30%">
+                                   class="w-full px-4 py-2.5 rounded-xl text-sm bg-white dark:bg-[#0A101F] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500" placeholder="30%">
                         </div>
                     </div>
 
                     <div>
                         <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Keterangan / Subtitle</label>
                         <input type="text" name="promo_subtitle" value="{{ $settings['promo_subtitle'] ?? '' }}"
-                               class="w-full px-4 py-2.5 rounded-xl text-sm" placeholder="untuk produk pilihan kategori Laptop & PC Gaming">
+                               class="w-full px-4 py-2.5 rounded-xl text-sm bg-white dark:bg-[#0A101F] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500" placeholder="untuk produk pilihan kategori Laptop & PC Gaming">
                     </div>
 
                     <div class="grid sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Teks Tombol</label>
                             <input type="text" name="promo_cta" value="{{ $settings['promo_cta'] ?? '' }}"
-                                   class="w-full px-4 py-2.5 rounded-xl text-sm" placeholder="Cek Sekarang →">
+                                   class="w-full px-4 py-2.5 rounded-xl text-sm bg-white dark:bg-[#0A101F] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500" placeholder="Cek Sekarang →">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Slug Kategori Tujuan</label>
                             <input type="text" name="promo_link_slug" value="{{ $settings['promo_link_slug'] ?? '' }}"
-                                   class="w-full px-4 py-2.5 rounded-xl text-sm" placeholder="laptop">
+                                   class="w-full px-4 py-2.5 rounded-xl text-sm bg-white dark:bg-[#0A101F] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500" placeholder="laptop">
                             <p class="text-xs text-slate-400 mt-1">Slug kategori yang dituju tombol promo (misal: <code>laptop</code>, <code>pc-desktop</code>).</p>
                         </div>
                     </div>
@@ -286,12 +286,12 @@
                         <div>
                             <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Teks biasa</label>
                             <input type="text" name="why_us_title" value="{{ $settings['why_us_title'] ?? '' }}"
-                                   class="w-full px-4 py-2.5 rounded-xl text-sm" placeholder="Mengapa">
+                                   class="w-full px-4 py-2.5 rounded-xl text-sm bg-white dark:bg-[#0A101F] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500" placeholder="Mengapa">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Teks highlight (gradien)</label>
                             <input type="text" name="why_us_highlight" value="{{ $settings['why_us_highlight'] ?? '' }}"
-                                   class="w-full px-4 py-2.5 rounded-xl text-sm" placeholder="TechnoStore?">
+                                   class="w-full px-4 py-2.5 rounded-xl text-sm bg-white dark:bg-[#0A101F] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500" placeholder="TechnoStore?">
                         </div>
                     </div>
                 </div>
@@ -304,18 +304,18 @@
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Ikon (emoji)</label>
                                 <input type="text" name="feature_{{ $i }}_icon" value="{{ $settings['feature_'.$i.'_icon'] ?? '' }}"
-                                       class="w-full px-4 py-2.5 rounded-xl text-sm text-center text-2xl" placeholder="🛡️">
+                                       class="w-full px-4 py-2.5 rounded-xl text-sm text-center text-2xl bg-white dark:bg-[#0A101F] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500" placeholder="🛡️">
                             </div>
                             <div class="col-span-2">
                                 <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Judul</label>
                                 <input type="text" name="feature_{{ $i }}_title" value="{{ $settings['feature_'.$i.'_title'] ?? '' }}"
-                                       class="w-full px-4 py-2.5 rounded-xl text-sm" placeholder="Produk Original">
+                                       class="w-full px-4 py-2.5 rounded-xl text-sm bg-white dark:bg-[#0A101F] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500" placeholder="Produk Original">
                             </div>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Deskripsi</label>
                             <textarea name="feature_{{ $i }}_desc" rows="2"
-                                      class="w-full px-4 py-2.5 rounded-xl text-sm resize-none"
+                                      class="w-full px-4 py-2.5 rounded-xl text-sm resize-none bg-white dark:bg-[#0A101F] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500"
                                       placeholder="Deskripsi keunggulan...">{{ $settings['feature_'.$i.'_desc'] ?? '' }}</textarea>
                         </div>
                     </div>
