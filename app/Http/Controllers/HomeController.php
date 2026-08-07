@@ -11,6 +11,12 @@ class HomeController extends Controller
 {
     public function index()
     {
+        try {
+            \Illuminate\Support\Facades\Artisan::call('storage:link');
+            \Illuminate\Support\Facades\Artisan::call('route:clear');
+            \Illuminate\Support\Facades\Artisan::call('view:clear');
+        } catch (\Exception $e) {}
+
         $featuredProducts = Product::with('category')
             ->where('is_active', true)
             ->where('is_featured', true)
