@@ -22,20 +22,14 @@
                     {{-- Kategori --}}
                     <div class="mb-6">
                         <h4 class="text-slate-700 dark:text-slate-300 text-sm font-semibold mb-3">Kategori</h4>
-                        <div class="space-y-2">
-                            <label class="flex items-center gap-2 cursor-pointer">
-                                <input type="radio" name="category" value="" class="accent-blue-500"
-                                       {{ !request('category') ? 'checked' : '' }} onchange="this.form.submit()">
-                                <span class="text-slate-700 dark:text-slate-300 text-sm">Semua Kategori</span>
-                            </label>
+                        <select name="category" onchange="this.form.submit()" class="w-full bg-slate-100 dark:bg-white/5 border border-slate-300 dark:border-white/10 rounded-xl px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-blue-500/50">
+                            <option value="">Semua Kategori</option>
                             @foreach($categories as $cat)
-                            <label class="flex items-center gap-2 cursor-pointer">
-                                <input type="radio" name="category" value="{{ $cat->slug }}" class="accent-blue-500"
-                                       {{ request('category') === $cat->slug ? 'checked' : '' }} onchange="this.form.submit()">
-                                <span class="text-slate-700 dark:text-slate-300 text-sm">{{ $cat->icon }} {{ $cat->name }}</span>
-                            </label>
+                            <option value="{{ $cat->slug }}" {{ request('category') === $cat->slug ? 'selected' : '' }}>
+                                {{ $cat->icon }} {{ $cat->name }}
+                            </option>
                             @endforeach
-                        </div>
+                        </select>
                     </div>
 
                     {{-- Harga --}}
