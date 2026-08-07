@@ -10,13 +10,13 @@
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
             <div>
                 <h1 class="font-jakarta text-2xl font-bold text-slate-900 dark:text-white">{{ $order->order_number }}</h1>
-                <div class="text-slate-500 dark:text-slate-400 text-sm mt-1">{{ $order->created_at->format('d MMMM Y, H:i') }}</div>
+                <div class="text-slate-500 dark:text-slate-400 text-sm mt-1">{{ $order->created_at->format('d F Y, H:i') }}</div>
             </div>
             <span class="text-sm font-semibold px-4 py-2 rounded-full
-                {{ $order->status === 'delivered' ? 'bg-green-500/20 text-green-300 border border-green-500/30' : '' }}
-                {{ $order->status === 'cancelled' ? 'bg-red-500/20 text-red-300 border border-red-500/30' : '' }}
-                {{ $order->status === 'shipped' ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30' : '' }}
-                {{ in_array($order->status, ['pending', 'confirmed', 'processing']) ? 'bg-yellow-500/20 text-yellow-300 border border-yellow-500/30' : '' }}
+                {{ $order->status === 'delivered' ? 'bg-green-100 dark:bg-green-500/20 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-500/30' : '' }}
+                {{ $order->status === 'cancelled' ? 'bg-red-100 dark:bg-red-500/20 text-red-700 dark:text-red-300 border border-red-200 dark:border-red-500/30' : '' }}
+                {{ $order->status === 'shipped' ? 'bg-purple-100 dark:bg-purple-500/20 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-500/30' : '' }}
+                {{ in_array($order->status, ['pending', 'confirmed', 'processing']) ? 'bg-yellow-100 dark:bg-yellow-500/20 text-yellow-700 dark:text-yellow-300 border border-yellow-200 dark:border-yellow-500/30' : '' }}
             ">{{ $order->status_label }}</span>
         </div>
 
@@ -75,7 +75,7 @@
                             @endif
                         @endif
                     </div>
-                    <div class="text-blue-400 font-semibold text-sm">Rp {{ number_format($item->subtotal, 0, ',', '.') }}</div>
+                    <div class="text-blue-600 dark:text-blue-400 font-semibold text-sm">Rp {{ number_format($item->subtotal, 0, ',', '.') }}</div>
                 </div>
 
                 {{-- Review Form --}}
@@ -119,7 +119,7 @@
 
             <div class="flex justify-between pt-3">
                 <span class="text-slate-900 dark:text-white font-bold">Total Pesanan</span>
-                <span class="text-blue-400 font-bold text-lg">Rp {{ number_format($order->total, 0, ',', '.') }}</span>
+                <span class="text-blue-600 dark:text-blue-400 font-bold text-lg">Rp {{ number_format($order->total, 0, ',', '.') }}</span>
             </div>
         </div>
     </div>
