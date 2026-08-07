@@ -34,6 +34,30 @@ Route::get('/migrate', function () {
     }
 });
 
+Route::get('/debug-log', function () {
+    try {
+        $logFile = storage_path('logs/laravel.log');
+        if (!file_exists($logFile)) return 'Log file not found.';
+        
+        $lines = file($logFile);
+        $lastLines = array_slice($lines, -100); // Ambil 100 baris terakhir
+        return '<pre style="word-wrap: break-word; white-space: pre-wrap;">' . htmlspecialchars(implode("", $lastLines)) . '</pre>';
+    } catch (\Exception $e) {
+        return 'Gagal membaca log: ' . $e->getMessage();
+    }
+});
+
+Route::get('/clear-cache', function () {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('view:clear');
+        \Illuminate\Support\Facades\Artisan::call('cache:clear');
+        \Illuminate\Support\Facades\Artisan::call('config:clear');
+        return 'Cache berhasil dibersihkan! Silakan refresh halaman utama.';
+    } catch (\Exception $e) {
+        return 'Gagal membersihkan cache: ' . $e->getMessage();
+    }
+});
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Products
