@@ -22,14 +22,39 @@
                     {{-- Kategori --}}
                     <div class="mb-6">
                         <h4 class="text-slate-700 dark:text-slate-300 text-sm font-semibold mb-3">Kategori</h4>
-                        <select name="category" onchange="this.form.submit()" class="w-full bg-slate-100 dark:bg-white/5 border border-slate-300 dark:border-white/10 rounded-xl px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-blue-500/50">
-                            <option value="">Semua Kategori</option>
+                        
+                        {{-- Mobile: Dropdown --}}
+                        <div class="lg:hidden">
+                            <select name="category" onchange="this.form.submit()" class="w-full bg-slate-100 dark:bg-white/5 border border-slate-300 dark:border-white/10 rounded-xl px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-blue-500/50">
+                                <option value="">Semua Kategori</option>
+                                @foreach($categories as $cat)
+                                <option value="{{ $cat->slug }}" {{ request('category') === $cat->slug ? 'selected' : '' }}>
+                                    {{ $cat->icon }} {{ $cat->name }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        {{-- Desktop: Radio Buttons (List) --}}
+                        <div class="hidden lg:block space-y-2">
+                            <label class="flex items-center gap-3 p-2 rounded-xl cursor-pointer transition-colors {{ !request('category') ? 'bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400' : 'hover:bg-slate-100 dark:hover:bg-white/5 text-slate-700 dark:text-slate-300' }}">
+                                <input type="radio" name="category" value="" onchange="this.form.submit()" class="hidden" {{ !request('category') ? 'checked' : '' }}>
+                                <span class="w-4 h-4 rounded-full border-2 flex items-center justify-center {{ !request('category') ? 'border-blue-500' : 'border-slate-300 dark:border-slate-600' }}">
+                                    @if(!request('category')) <span class="w-2 h-2 rounded-full bg-blue-500"></span> @endif
+                                </span>
+                                <span class="text-sm font-medium">Semua Kategori</span>
+                            </label>
+
                             @foreach($categories as $cat)
-                            <option value="{{ $cat->slug }}" {{ request('category') === $cat->slug ? 'selected' : '' }}>
-                                {{ $cat->icon }} {{ $cat->name }}
-                            </option>
+                            <label class="flex items-center gap-3 p-2 rounded-xl cursor-pointer transition-colors {{ request('category') === $cat->slug ? 'bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400' : 'hover:bg-slate-100 dark:hover:bg-white/5 text-slate-700 dark:text-slate-300' }}">
+                                <input type="radio" name="category" value="{{ $cat->slug }}" onchange="this.form.submit()" class="hidden" {{ request('category') === $cat->slug ? 'checked' : '' }}>
+                                <span class="w-4 h-4 rounded-full border-2 flex items-center justify-center {{ request('category') === $cat->slug ? 'border-blue-500' : 'border-slate-300 dark:border-slate-600' }}">
+                                    @if(request('category') === $cat->slug) <span class="w-2 h-2 rounded-full bg-blue-500"></span> @endif
+                                </span>
+                                <span class="text-sm font-medium">{{ $cat->icon }} {{ $cat->name }}</span>
+                            </label>
                             @endforeach
-                        </select>
+                        </div>
                     </div>
 
                     {{-- Harga --}}
