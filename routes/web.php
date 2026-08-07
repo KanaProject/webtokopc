@@ -19,9 +19,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/fix-storage', function () {
     try {
         \Illuminate\Support\Facades\Artisan::call('storage:link');
-        return 'Symlink storage berhasil dibuat! Silakan kembali dan refresh halaman admin Anda.';
+        return 'Storage link berhasil dibuat! Silakan kembali ke halaman utama.';
     } catch (\Exception $e) {
-        return 'Gagal membuat symlink: ' . $e->getMessage();
+        return 'Terjadi kesalahan: ' . $e->getMessage();
+    }
+});
+
+Route::get('/migrate', function () {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+        return 'Migrasi database berhasil! Sistem ulasan sekarang sudah siap digunakan.';
+    } catch (\Exception $e) {
+        return 'Gagal memigrasi database: ' . $e->getMessage();
     }
 });
 
