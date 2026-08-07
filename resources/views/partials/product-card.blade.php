@@ -1,4 +1,4 @@
-<div class="product-card bg-white dark:bg-slate-900 hover:shadow-xl transition-all duration-300 flex flex-col group relative"
+<div class="product-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col group relative overflow-hidden"
      style="{{ isset($index) ? 'animation-delay: ' . ($index * 0.05) . 's' : '' }}">
 
     {{-- Badges (Absolute) --}}

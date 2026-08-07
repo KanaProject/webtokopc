@@ -90,12 +90,10 @@
             </a>
         </div>
 
-        <div class="bg-slate-200 dark:bg-slate-700 border-2 border-red-500 dark:border-blue-500 rounded-xl overflow-hidden">
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-[1px]">
-                @foreach($featuredProducts as $index => $product)
-                @include('partials.product-card', ['product' => $product, 'index' => $index])
-                @endforeach
-            </div>
+        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
+            @foreach($featuredProducts as $index => $product)
+            @include('partials.product-card', ['product' => $product, 'index' => $index])
+            @endforeach
         </div>
     </div>
 </section>
@@ -133,12 +131,10 @@
             <h2 class="font-jakarta text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-3">Produk <span class="gradient-text">Terbaru</span></h2>
             <p class="text-slate-500 dark:text-slate-400">Baru saja ditambahkan ke katalog kami</p>
         </div>
-        <div class="bg-slate-200 dark:bg-slate-700 border-2 border-red-500 dark:border-blue-500 rounded-xl overflow-hidden">
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-[1px]">
-                @foreach($latestProducts as $index => $product)
-                @include('partials.product-card', ['product' => $product, 'index' => $index])
-                @endforeach
-            </div>
+        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
+            @foreach($latestProducts as $index => $product)
+            @include('partials.product-card', ['product' => $product, 'index' => $index])
+            @endforeach
         </div>
     </div>
 </section>

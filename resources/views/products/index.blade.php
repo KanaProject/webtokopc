@@ -102,12 +102,10 @@
             </div>
 
             @if($products->count() > 0)
-            <div class="bg-slate-200 dark:bg-slate-700 border-2 border-red-500 dark:border-blue-500 rounded-xl overflow-hidden">
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-[1px]">
-                    @foreach($products as $index => $product)
-                    @include('partials.product-card', ['product' => $product, 'index' => $index])
-                    @endforeach
-                </div>
+            <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 sm:gap-6">
+                @foreach($products as $index => $product)
+                @include('partials.product-card', ['product' => $product, 'index' => $index])
+                @endforeach
             </div>
 
             {{-- Pagination --}}
