@@ -2,10 +2,10 @@
      style="{{ isset($index) ? 'animation-delay: ' . ($index * 0.08) . 's' : '' }}">
 
     {{-- Image --}}
-    <a href="{{ route('products.show', $product) }}" class="block relative overflow-hidden bg-gradient-to-br from-slate-800 to-slate-900 aspect-square">
+    <a href="{{ route('products.show', $product) }}" class="block relative overflow-hidden bg-gradient-to-br from-slate-800 to-slate-900 aspect-[4/3]">
         @if($product->image)
         <img src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}"
-             class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+             class="w-full h-full object-contain p-4 hover:scale-105 transition-transform duration-500">
         @else
         <div class="w-full h-full flex items-center justify-center text-6xl">
             {{ $product->category->icon ?? '💻' }}

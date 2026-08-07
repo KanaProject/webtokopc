@@ -5,7 +5,7 @@
     <div class="flex flex-col lg:flex-row gap-8">
 
         {{-- SIDEBAR FILTER --}}
-        <aside class="lg:w-64 flex-shrink-0" x-data="{ open: false }">
+        <aside class="lg:w-72 xl:w-80 flex-shrink-0" x-data="{ open: false }">
             <div class="glass rounded-2xl p-6 border border-slate-200 dark:border-white/5 sticky top-24">
                 <div class="flex items-center justify-between mb-5">
                     <h3 class="text-slate-900 dark:text-white font-semibold text-lg">Filter</h3>
@@ -77,7 +77,7 @@
             </div>
 
             @if($products->count() > 0)
-            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
                 @foreach($products as $index => $product)
                 @include('partials.product-card', ['product' => $product, 'index' => $index])
                 @endforeach
