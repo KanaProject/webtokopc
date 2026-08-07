@@ -48,7 +48,7 @@
                     @if(!empty($settings['store_logo']))
                     <div class="mb-5 flex items-center gap-5">
                         <img src="{{ Storage::url($settings['store_logo']) }}"
-                             alt="Logo Toko" class="h-20 w-auto object-contain rounded-xl border border-slate-200 dark:border-white/10 p-2 bg-white/50">
+                             alt="Logo Toko" class="h-20 w-auto object-contain border border-slate-200 dark:border-white/10 p-2 bg-white/50">
                         <div>
                             <p class="text-sm text-slate-600 dark:text-slate-300 font-medium mb-2">Logo saat ini</p>
                             <form method="POST" action="{{ route('admin.settings.logo.delete') }}" class="inline">
