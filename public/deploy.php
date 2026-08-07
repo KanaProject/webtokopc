@@ -18,8 +18,7 @@ if ($request_token !== $secret_token) {
 // Perintah yang akan dijalankan di terminal cPanel
 $commands = [
     'cd .. && git pull origin main 2>&1',
-    'cd .. && php artisan config:clear 2>&1',
-    'cd .. && php artisan view:clear 2>&1',
+    'cd .. && php artisan optimize:clear 2>&1',
 ];
 
 $output = '';
