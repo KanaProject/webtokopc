@@ -34,7 +34,7 @@
         </div>
 
         {{-- ===== TAB: GENERAL / TOKO ===== --}}
-        <div x-show="activeTab === 'general'" x-transition>
+        <div x-show="activeTab === 'general'">
             <div class="space-y-5">
 
                 {{-- Logo --}}
@@ -139,7 +139,7 @@
         </div>
 
         {{-- ===== TAB: HERO ===== --}}
-        <div x-show="activeTab === 'hero'" x-transition>
+        <div x-show="activeTab === 'hero'">
             <div class="space-y-5">
                 <div class="glass rounded-2xl p-6 border border-slate-200 dark:border-white/5">
                     <h3 class="font-semibold text-slate-900 dark:text-white mb-5 flex items-center gap-2">
@@ -194,7 +194,7 @@
         </div>
 
         {{-- ===== TAB: STATS ===== --}}
-        <div x-show="activeTab === 'stats'" x-transition>
+        <div x-show="activeTab === 'stats'">
             <div class="glass rounded-2xl p-6 border border-slate-200 dark:border-white/5">
                 <h3 class="font-semibold text-slate-900 dark:text-white mb-5 flex items-center gap-2">
                     <span class="w-6 h-6 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xs">S</span>
@@ -223,7 +223,7 @@
         </div>
 
         {{-- ===== TAB: PROMO BANNER ===== --}}
-        <div x-show="activeTab === 'promo_banner'" x-transition>
+        <div x-show="activeTab === 'promo_banner'">
             <div class="glass rounded-2xl p-6 border border-slate-200 dark:border-white/5">
                 <h3 class="font-semibold text-slate-900 dark:text-white mb-5 flex items-center gap-2">
                     <span class="w-6 h-6 rounded-lg bg-yellow-500/20 text-yellow-400 flex items-center justify-center text-xs">P</span>
@@ -275,7 +275,7 @@
         </div>
 
         {{-- ===== TAB: WHY US ===== --}}
-        <div x-show="activeTab === 'why_us'" x-transition>
+        <div x-show="activeTab === 'why_us'">
             <div class="space-y-5">
 
                 <div class="glass rounded-2xl p-6 border border-slate-200 dark:border-white/5">
