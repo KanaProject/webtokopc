@@ -260,12 +260,12 @@
     @if(session('success') || session('error'))
     <div class="fixed top-20 right-4 z-50 max-w-sm space-y-2" x-data>
         @if(session('success'))
-        <div class="toast glass-blue border border-green-500/30 text-green-300 text-sm px-5 py-4 rounded-xl flex items-center gap-3 shadow-2xl">
+        <div class="toast glass-blue border border-green-500/30 text-green-700 dark:text-green-300 text-sm px-5 py-4 rounded-xl flex items-center gap-3 shadow-2xl">
             ✅ {{ session('success') }}
         </div>
         @endif
         @if(session('error'))
-        <div class="toast glass border border-red-500/30 text-red-400 text-sm px-5 py-4 rounded-xl flex items-center gap-3 shadow-2xl">
+        <div class="toast glass border border-red-500/30 text-red-700 dark:text-red-400 text-sm px-5 py-4 rounded-xl flex items-center gap-3 shadow-2xl">
             ❌ {{ session('error') }}
         </div>
         @endif
