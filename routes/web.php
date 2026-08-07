@@ -16,6 +16,15 @@ use Illuminate\Support\Facades\Route;
 // ============================================================
 // PUBLIC ROUTES
 // ============================================================
+Route::get('/fix-storage', function () {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('storage:link');
+        return 'Symlink storage berhasil dibuat! Silakan kembali dan refresh halaman admin Anda.';
+    } catch (\Exception $e) {
+        return 'Gagal membuat symlink: ' . $e->getMessage();
+    }
+});
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Products
