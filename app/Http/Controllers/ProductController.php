@@ -55,20 +55,21 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        if (!$product->is_active) {
-            abort(404);
-        }
-
+        abort_if(!$product->is_active, 404);
+        
         // Increment views
         $product->increment('views');
 
-        $related = Product::with('category')
-            ->where('category_id', $product->category_id)
-            ->where('id', '!=', $product->id)
-            ->where('is_active', true)
-            ->take(4)
-            ->get();
+        $product->load(['category', 'reviews' => function($query) {
+            $query->where('is_approved', true)->latest();
+        }, 'reviews.user']);
 
+        $related = Product::where('category_id', $product->category_id)
+                                ->where('id', '!=', $product->id)
+                                ->where('is_active', true)
+                                ->take(4)
+                                ->get();
+                                
         return view('products.show', compact('product', 'related'));
     }
 

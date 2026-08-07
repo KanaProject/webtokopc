@@ -128,6 +128,59 @@
     </div>
     @endif
 
+    {{-- Reviews --}}
+    <div class="mb-12">
+        <div class="flex items-end justify-between mb-6">
+            <div>
+                <h2 class="font-jakarta text-2xl font-bold text-slate-900 dark:text-white mb-2">Ulasan Pembeli</h2>
+                @php 
+                    $avgRating = $product->reviews->avg('rating');
+                    $totalReviews = $product->reviews->count();
+                @endphp
+                <div class="flex items-center gap-2">
+                    <div class="text-yellow-400 text-xl font-bold">
+                        @if($totalReviews > 0)
+                            {!! str_repeat('★', round($avgRating)) !!}<span class="text-slate-300 dark:text-slate-600">{!! str_repeat('★', 5 - round($avgRating)) !!}</span>
+                        @else
+                            <span class="text-slate-300 dark:text-slate-600">★★★★★</span>
+                        @endif
+                    </div>
+                    <div class="text-slate-500 dark:text-slate-400 text-sm font-medium">
+                        {{ $totalReviews > 0 ? number_format($avgRating, 1) . ' / 5.0 dari ' . $totalReviews . ' ulasan' : 'Belum ada ulasan' }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @if($totalReviews > 0)
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                @foreach($product->reviews as $review)
+                <div class="glass p-5 rounded-2xl border border-slate-200 dark:border-white/5">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-sm shadow-md">
+                            {{ strtoupper(substr($review->user->name, 0, 1)) }}
+                        </div>
+                        <div>
+                            <div class="text-slate-900 dark:text-white font-bold text-sm">{{ $review->user->name }}</div>
+                            <div class="text-slate-500 text-xs">{{ $review->created_at->diffForHumans() }}</div>
+                        </div>
+                    </div>
+                    <div class="text-yellow-400 text-sm mb-2">
+                        {!! str_repeat('★', $review->rating) !!}
+                    </div>
+                    <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+                        {{ $review->comment }}
+                    </p>
+                </div>
+                @endforeach
+            </div>
+        @else
+            <div class="glass p-8 rounded-2xl border border-slate-200 dark:border-white/5 text-center">
+                <p class="text-slate-500">Jadilah yang pertama untuk memberikan ulasan pada produk ini!</p>
+            </div>
+        @endif
+    </div>
+
     {{-- Related Products --}}
     @if($related->count() > 0)
     <div>

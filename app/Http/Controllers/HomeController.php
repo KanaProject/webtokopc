@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\SiteSetting;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -35,8 +36,14 @@ class HomeController extends Controller
             ->take(4)
             ->get();
 
+        $testimonials = Testimonial::where('is_active', true)
+            ->orderBy('sort_order')
+            ->latest()
+            ->take(6)
+            ->get();
+
         $settings = SiteSetting::allAsArray();
 
-        return view('home', compact('featuredProducts', 'categories', 'latestProducts', 'settings'));
+        return view('home', compact('featuredProducts', 'categories', 'latestProducts', 'settings', 'testimonials'));
     }
 }

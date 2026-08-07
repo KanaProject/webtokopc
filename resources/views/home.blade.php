@@ -172,4 +172,55 @@
     </div>
 </section>
 
+@if(isset($testimonials) && $testimonials->count() > 0)
+{{-- TESTIMONIALS --}}
+<section class="py-16">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div class="text-center mb-12">
+            <h2 class="font-jakarta text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-3">
+                Apa Kata <span class="gradient-text">Pelanggan?</span>
+            </h2>
+            <p class="text-slate-500 dark:text-slate-400">Pengalaman nyata dari pelanggan yang telah berbelanja di toko kami</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            @foreach($testimonials as $index => $testimonial)
+            <div class="glass card-hover rounded-3xl p-8 border border-slate-200 dark:border-white/5 relative flex flex-col justify-between" style="animation-delay: {{ $index * 0.1 }}s">
+                {{-- Quote Icon --}}
+                <div class="absolute top-6 right-6 text-slate-200 dark:text-white/5 opacity-50">
+                    <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                    </svg>
+                </div>
+
+                {{-- Rating & Content --}}
+                <div class="relative z-10 mb-6">
+                    <div class="flex items-center text-yellow-400 text-lg mb-4">
+                        {!! str_repeat('★', $testimonial->rating) !!}
+                        @if($testimonial->rating < 5)
+                            <span class="text-slate-300 dark:text-slate-600">{!! str_repeat('★', 5 - $testimonial->rating) !!}</span>
+                        @endif
+                    </div>
+                    <p class="text-slate-700 dark:text-slate-300 text-base leading-relaxed italic">"{{ $testimonial->content }}"</p>
+                </div>
+
+                {{-- Author --}}
+                <div class="relative z-10 flex items-center gap-4 mt-auto">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                        {{ strtoupper(substr($testimonial->name, 0, 1)) }}
+                    </div>
+                    <div>
+                        <h4 class="text-slate-900 dark:text-white font-bold">{{ $testimonial->name }}</h4>
+                        @if($testimonial->role_or_location)
+                            <p class="text-slate-500 text-sm">{{ $testimonial->role_or_location }}</p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
 @endsection

@@ -72,6 +72,7 @@ Route::middleware(['auth'])->group(function () {
     // Orders
     Route::get('/pesanan', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/pesanan/{order}', [OrderController::class, 'show'])->name('orders.show');
+    Route::post('/pesanan/{order}/reviews', [\App\Http\Controllers\ReviewController::class, 'store'])->name('orders.reviews.store');
 });
 
 // ============================================================
@@ -90,6 +91,13 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('orders', [AdminOrder::class, 'index'])->name('orders.index');
     Route::get('orders/{order}', [AdminOrder::class, 'show'])->name('orders.show');
     Route::patch('orders/{order}/status', [AdminOrder::class, 'updateStatus'])->name('orders.update-status');
+
+    // Testimonials
+    Route::resource('testimonials', \App\Http\Controllers\Admin\TestimonialController::class);
+
+    // Reviews
+    Route::get('reviews', [\App\Http\Controllers\Admin\ReviewController::class, 'index'])->name('reviews.index');
+    Route::patch('reviews/{review}/toggle', [\App\Http\Controllers\Admin\ReviewController::class, 'toggleStatus'])->name('reviews.toggle');
 
     // Site Settings (Homepage Content)
     Route::get('settings', [AdminSiteSetting::class, 'index'])->name('settings.index');

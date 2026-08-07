@@ -41,19 +41,79 @@
         <h2 class="text-slate-900 dark:text-white font-semibold mb-5">🛍️ Item Pesanan</h2>
         <div class="space-y-4">
             @foreach($order->items as $item)
-            <div class="flex gap-4 py-3 border-b border-slate-200 dark:border-white/5 last:border-0">
-                <div class="w-14 h-14 glass rounded-xl flex items-center justify-center flex-shrink-0 bg-white dark:bg-slate-800 overflow-hidden">
-                    @if($item->product_image)
-                    <img src="{{ Storage::url($item->product_image) }}" alt="{{ $item->product_name }}" class="w-full h-full object-cover">
-                    @else
-                    <span>💻</span>
-                    @endif
+            <div x-data="{ showReviewForm: false }" class="py-3 border-b border-slate-200 dark:border-white/5 last:border-0">
+                <div class="flex gap-4">
+                    <div class="w-14 h-14 glass rounded-xl flex items-center justify-center flex-shrink-0 bg-white dark:bg-slate-800 overflow-hidden">
+                        @if($item->product_image)
+                        <img src="{{ Storage::url($item->product_image) }}" alt="{{ $item->product_name }}" class="w-full h-full object-cover">
+                        @else
+                        <span>💻</span>
+                        @endif
+                    </div>
+                    <div class="flex-1">
+                        <div class="text-slate-900 dark:text-white text-sm font-medium">{{ $item->product_name }}</div>
+                        <div class="text-slate-500 dark:text-slate-400 text-xs mt-1">Rp {{ number_format($item->price, 0, ',', '.') }} × {{ $item->quantity }}</div>
+                        
+                        @if($order->status === 'completed')
+                            @php
+                                $hasReviewed = \App\Models\Review::where('user_id', auth()->id())
+                                                ->where('order_id', $order->id)
+                                                ->where('product_id', $item->product_id)
+                                                ->exists();
+                            @endphp
+                            @if(!$hasReviewed)
+                            <div class="mt-2">
+                                <button @click="showReviewForm = !showReviewForm" class="text-xs text-blue-500 hover:text-blue-400 font-semibold flex items-center gap-1">
+                                    <span x-show="!showReviewForm">⭐ Beri Ulasan</span>
+                                    <span x-show="showReviewForm" x-cloak>Tutup Form</span>
+                                </button>
+                            </div>
+                            @else
+                            <div class="mt-2 text-xs text-green-500 font-semibold flex items-center gap-1">
+                                ✅ Sudah diulas
+                            </div>
+                            @endif
+                        @endif
+                    </div>
+                    <div class="text-blue-400 font-semibold text-sm">Rp {{ number_format($item->subtotal, 0, ',', '.') }}</div>
                 </div>
-                <div class="flex-1">
-                    <div class="text-slate-900 dark:text-white text-sm font-medium">{{ $item->product_name }}</div>
-                    <div class="text-slate-500 dark:text-slate-400 text-xs mt-1">Rp {{ number_format($item->price, 0, ',', '.') }} × {{ $item->quantity }}</div>
+
+                {{-- Review Form --}}
+                @if($order->status === 'completed' && !isset($hasReviewed) || ($order->status === 'completed' && isset($hasReviewed) && !$hasReviewed))
+                <div x-show="showReviewForm" x-collapse x-cloak class="mt-4 pt-4 border-t border-dashed border-slate-200 dark:border-white/10">
+                    <form action="{{ route('orders.reviews.store', $order) }}" method="POST" class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $item->product_id }}">
+                        
+                        <div class="mb-4">
+                            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2">Beri Bintang (1-5)</label>
+                            <div class="flex items-center gap-2 text-2xl" x-data="{ rating: 5, hoverRating: 0 }">
+                                <input type="hidden" name="rating" x-model="rating">
+                                <template x-for="i in 5">
+                                    <button type="button" 
+                                            @click="rating = i" 
+                                            @mouseenter="hoverRating = i" 
+                                            @mouseleave="hoverRating = 0"
+                                            class="focus:outline-none transition-colors"
+                                            :class="(hoverRating >= i || (hoverRating == 0 && rating >= i)) ? 'text-yellow-400' : 'text-slate-300 dark:text-slate-600'">
+                                        ★
+                                    </button>
+                                </template>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2">Tulis Pengalaman Anda</label>
+                            <textarea name="comment" rows="3" required placeholder="Bagaimana kualitas barang ini?"
+                                      class="w-full bg-white dark:bg-[#0A101F] border border-slate-200 dark:border-white/10 rounded-xl px-3 py-2 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-blue-500"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-glow w-full text-slate-900 dark:text-white font-semibold text-sm py-2 rounded-xl">
+                            Kirim Ulasan
+                        </button>
+                    </form>
                 </div>
-                <div class="text-blue-400 font-semibold text-sm">Rp {{ number_format($item->subtotal, 0, ',', '.') }}</div>
+                @endif
             </div>
             @endforeach
 
