@@ -10,6 +10,12 @@
         <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Kelola informasi toko dan konten halaman utama website.</p>
     </div>
 
+    {{-- Form Delete Logo (Luar form utama) --}}
+    <form id="delete-logo-form" method="POST" action="{{ route('admin.settings.logo.delete') }}" class="hidden">
+        @csrf
+        @method('DELETE')
+    </form>
+
     <form method="POST" action="{{ route('admin.settings.update') }}" enctype="multipart/form-data" x-data="{ activeTab: 'general' }">
         @csrf
 
@@ -51,15 +57,11 @@
                              alt="Logo Toko" class="h-20 w-auto object-contain border border-slate-200 dark:border-white/10 p-2 bg-white/50">
                         <div>
                             <p class="text-sm text-slate-600 dark:text-slate-300 font-medium mb-2">Logo saat ini</p>
-                            <form method="POST" action="{{ route('admin.settings.logo.delete') }}" class="inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"
-                                        onclick="return confirm('Hapus logo ini?')"
-                                        class="text-xs text-red-400 hover:text-red-300 border border-red-400/30 hover:border-red-400/60 px-3 py-1.5 rounded-lg transition-colors">
-                                    🗑️ Hapus Logo
-                                </button>
-                            </form>
+                            <button type="button"
+                                    onclick="if(confirm('Hapus logo ini?')) { document.getElementById('delete-logo-form').submit(); }"
+                                    class="text-xs text-red-400 hover:text-red-300 border border-red-400/30 hover:border-red-400/60 px-3 py-1.5 rounded-lg transition-colors">
+                                🗑️ Hapus Logo
+                            </button>
                         </div>
                     </div>
                     @else
