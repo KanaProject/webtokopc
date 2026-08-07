@@ -139,10 +139,11 @@
             color: #1E293B !important;
         }
         html:not(.dark) nav .glass {
-            background: rgba(241, 245, 249, 0.6) !important; /* slate-100 semi-transparent */
-            backdrop-filter: blur(12px) !important;
-            -webkit-backdrop-filter: blur(12px) !important;
-            border: 1px solid rgba(0,0,0,0.12) !important;
+            background: #FFFFFF !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            border: 1px solid rgba(0,0,0,0.08) !important;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05) !important;
         }
         /* Mobile menu */
         html:not(.dark) nav [x-show="mobileOpen"] {
