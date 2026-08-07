@@ -172,17 +172,28 @@
     </div>
 </section>
 
-@if(isset($testimonials) && $testimonials->count() > 0)
 {{-- TESTIMONIALS --}}
-<section class="py-16">
+<section class="py-16" x-data="{ showReviewModal: false }">
     <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-        <div class="text-center mb-12">
-            <h2 class="font-jakarta text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-3">
-                Apa Kata <span class="gradient-text">Pelanggan?</span>
-            </h2>
-            <p class="text-slate-500 dark:text-slate-400">Pengalaman nyata dari pelanggan yang telah berbelanja di toko kami</p>
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div>
+                <h2 class="font-jakarta text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-3">
+                    Apa Kata <span class="gradient-text">Pelanggan?</span>
+                </h2>
+                <p class="text-slate-500 dark:text-slate-400">Pengalaman nyata dari pelanggan yang telah berbelanja di toko kami</p>
+            </div>
+            <button @click="showReviewModal = true" class="btn-glow px-6 py-3 rounded-xl text-white font-semibold flex items-center gap-2 whitespace-nowrap">
+                <span>⭐</span> Tulis Ulasan Toko
+            </button>
         </div>
         
+        @if(session('success'))
+        <div class="mb-8 p-4 rounded-xl bg-green-50 dark:bg-green-500/10 border border-green-200 dark:border-green-500/20 text-green-600 dark:text-green-400 font-medium">
+            {{ session('success') }}
+        </div>
+        @endif
+
+        @if(isset($testimonials) && $testimonials->count() > 0)
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach($testimonials as $index => $testimonial)
             <div class="glass card-hover rounded-3xl p-8 border border-slate-200 dark:border-white/5 relative flex flex-col justify-between" style="animation-delay: {{ $index * 0.1 }}s">
@@ -219,8 +230,77 @@
             </div>
             @endforeach
         </div>
+        </div>
+        @else
+        <div class="text-center py-12 glass rounded-3xl border border-slate-200 dark:border-white/5">
+            <div class="text-4xl mb-4">💬</div>
+            <h3 class="text-slate-900 dark:text-white font-semibold text-lg mb-2">Belum Ada Ulasan</h3>
+            <p class="text-slate-500 dark:text-slate-400">Jadilah yang pertama memberikan ulasan untuk toko kami!</p>
+        </div>
+        @endif
+    </div>
+
+    {{-- Review Modal --}}
+    <div x-show="showReviewModal" class="fixed inset-0 z-50 overflow-y-auto" x-cloak>
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div x-show="showReviewModal" x-transition.opacity class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm transition-opacity" @click="showReviewModal = false"></div>
+            
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
+            
+            <div x-show="showReviewModal" 
+                 x-transition:enter="ease-out duration-300" 
+                 x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
+                 x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" 
+                 x-transition:leave="ease-in duration-200" 
+                 x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" 
+                 x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
+                 class="inline-block align-bottom bg-white dark:bg-slate-900 rounded-3xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg w-full border border-slate-200 dark:border-white/10">
+                
+                <div class="px-6 py-6 border-b border-slate-100 dark:border-white/10 flex justify-between items-center">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white font-jakarta">Tulis Ulasan Toko</h3>
+                    <button @click="showReviewModal = false" class="text-slate-400 hover:text-slate-600 dark:hover:text-white transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+
+                <form action="{{ route('testimonials.submit') }}" method="POST" class="p-6">
+                    @csrf
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Nama Anda <span class="text-red-500">*</span></label>
+                            <input type="text" name="name" required class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-2.5 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500" placeholder="Misal: Budi Santoso">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Pekerjaan / Kota Asal <span class="text-slate-400 font-normal">(Opsional)</span></label>
+                            <input type="text" name="role_or_location" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-2.5 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500" placeholder="Misal: Programmer di Jakarta">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Rating Bintang <span class="text-red-500">*</span></label>
+                            <div class="flex items-center gap-2 text-3xl" x-data="{ rating: 5, hoverRating: 0 }">
+                                <input type="hidden" name="rating" x-model="rating">
+                                <template x-for="i in 5">
+                                    <button type="button" 
+                                            @click="rating = i" 
+                                            @mouseenter="hoverRating = i" 
+                                            @mouseleave="hoverRating = 0"
+                                            class="focus:outline-none transition-colors"
+                                            :class="(hoverRating >= i || (hoverRating == 0 && rating >= i)) ? 'text-yellow-400' : 'text-slate-200 dark:text-slate-700'">
+                                        ★
+                                    </button>
+                                </template>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Ulasan Anda <span class="text-red-500">*</span></label>
+                            <textarea name="content" rows="4" required class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-2.5 text-slate-900 dark:text-white focus:outline-none focus:border-blue-500 resize-none" placeholder="Ceritakan pengalaman Anda berbelanja di sini..."></textarea>
+                        </div>
+                    </div>
+                    <div class="mt-8 flex justify-end gap-3">
+                        <button type="button" @click="showReviewModal = false" class="px-5 py-2.5 rounded-xl text-slate-600 dark:text-slate-400 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Batal</button>
+                        <button type="submit" class="btn-glow px-6 py-2.5 rounded-xl text-white font-semibold">Kirim Ulasan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </section>
-@endif
-
-@endsection

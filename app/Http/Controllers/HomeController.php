@@ -46,4 +46,24 @@ class HomeController extends Controller
 
         return view('home', compact('featuredProducts', 'categories', 'latestProducts', 'settings', 'testimonials'));
     }
+
+    public function submitTestimonial(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'role_or_location' => 'nullable|string|max:255',
+            'rating' => 'required|integer|min:1|max:5',
+            'content' => 'required|string|max:1000',
+        ]);
+
+        Testimonial::create([
+            'name' => $validated['name'],
+            'role_or_location' => $validated['role_or_location'],
+            'rating' => $validated['rating'],
+            'content' => $validated['content'],
+            'is_active' => false, // Default to inactive pending admin approval
+        ]);
+
+        return redirect()->route('home')->with('success', 'Terima kasih! Ulasan Anda telah terkirim dan sedang menunggu persetujuan admin.');
+    }
 }
