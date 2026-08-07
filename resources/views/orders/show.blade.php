@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+<div class="w-full xl:w-[90%] 2xl:w-[85%] max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-0 py-10">
     <a href="{{ route('orders.index') }}" class="text-blue-400 hover:text-blue-300 text-sm mb-6 inline-flex items-center gap-1">
         ← Kembali ke Pesanan
     </a>

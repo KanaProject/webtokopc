@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+<div class="w-full xl:w-[90%] 2xl:w-[85%] max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-0 py-10">
     <h1 class="font-jakarta text-3xl font-bold text-slate-900 dark:text-white mb-8">📦 Pesanan Saya</h1>
 
     @if($orders->count() > 0)
