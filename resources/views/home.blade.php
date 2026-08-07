@@ -8,7 +8,7 @@
     <div class="absolute inset-0 hero-glow pointer-events-none"></div>
     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
 
-    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
+    <div class="w-full xl:w-[90%] 2xl:w-[85%] max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-0 relative z-10">
         <div class="text-center max-w-4xl mx-auto">
             <div class="inline-flex items-center gap-2 glass-blue rounded-full px-4 py-2 text-sm text-blue-300 mb-8 font-medium">
                 <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
@@ -56,7 +56,7 @@
 
 {{-- CATEGORIES --}}
 <section id="categories" class="py-16">
-    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+    <div class="w-full xl:w-[90%] 2xl:w-[85%] max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-0">
         <div class="text-center mb-12">
             <h2 class="font-jakarta text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-3">Belanja per <span class="gradient-text">Kategori</span></h2>
             <p class="text-slate-500 dark:text-slate-400">Temukan produk sesuai kebutuhan Anda</p>
@@ -78,7 +78,7 @@
 
 {{-- FEATURED PRODUCTS --}}
 <section class="py-16">
-    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+    <div class="w-full xl:w-[90%] 2xl:w-[85%] max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-0">
         <div class="flex items-center justify-between mb-12">
             <div>
                 <h2 class="font-jakarta text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-2">Produk <span class="gradient-text">Unggulan</span></h2>
@@ -102,7 +102,7 @@
 
 {{-- PROMO BANNER --}}
 <section class="py-8">
-    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+    <div class="w-full xl:w-[90%] 2xl:w-[85%] max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-0">
         <div class="relative overflow-hidden rounded-3xl p-8 md:p-12" style="background: linear-gradient(135deg, #1e3a8a 0%, #1e1b4b 50%, #0f172a 100%);">
             <div class="absolute inset-0" style="background: radial-gradient(ellipse at 80% 50%, rgba(59,130,246,0.3) 0%, transparent 60%);"></div>
             <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
@@ -128,7 +128,7 @@
 
 {{-- LATEST PRODUCTS --}}
 <section class="py-16">
-    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+    <div class="w-full xl:w-[90%] 2xl:w-[85%] max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-0">
         <div class="text-center mb-12">
             <h2 class="font-jakarta text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-3">Produk <span class="gradient-text">Terbaru</span></h2>
             <p class="text-slate-500 dark:text-slate-400">Baru saja ditambahkan ke katalog kami</p>

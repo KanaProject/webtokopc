@@ -159,7 +159,7 @@
 
     <!-- NAVBAR -->
     <nav class="sticky top-0 z-50 glass border-b border-blue-500/10" x-data="{ mobileOpen: false }">
-        <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div class="w-full xl:w-[90%] 2xl:w-[85%] max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-0">
             <div class="flex items-center justify-between h-16">
                 <a href="{{ route('home') }}" class="flex items-center gap-2">
                     @if($storeLogo)
@@ -279,7 +279,7 @@
 
     <!-- FOOTER -->
     <footer class="mt-20 border-t border-white/5 bg-slate-900/50">
-        <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-12">
+        <div class="w-full xl:w-[90%] 2xl:w-[85%] max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-0 py-12">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
                     <a href="{{ route('home') }}" class="flex items-center gap-2 mb-4">
