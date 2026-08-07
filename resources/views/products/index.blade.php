@@ -35,9 +35,10 @@
                     {{-- Harga --}}
                     <div class="mb-6">
                         <h4 class="text-slate-700 dark:text-slate-300 text-sm font-semibold mb-3">Rentang Harga</h4>
-                        <div class="space-y-3">
+                        <div class="flex items-center gap-2 lg:flex-col lg:items-stretch lg:gap-3">
                             <input type="number" name="min_price" placeholder="Harga min" value="{{ request('min_price') }}"
                                    class="w-full bg-slate-100 dark:bg-white/5 border border-slate-300 dark:border-white/10 rounded-xl px-3 py-2 text-sm text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-blue-500/50">
+                            <span class="text-slate-400 text-sm font-medium lg:hidden">s/d</span>
                             <input type="number" name="max_price" placeholder="Harga maks" value="{{ request('max_price') }}"
                                    class="w-full bg-slate-100 dark:bg-white/5 border border-slate-300 dark:border-white/10 rounded-xl px-3 py-2 text-sm text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:border-blue-500/50">
                         </div>
